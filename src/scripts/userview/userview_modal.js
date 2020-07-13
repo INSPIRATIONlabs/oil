@@ -98,6 +98,7 @@ export function oilShowPreferenceCenter() {
           } else {
             currentPrivacySettings = getAdvancedSettingsPurposesDefault() ? getPurposeIds() : [];
           }
+          console.log({currentPrivacySettings});
           applyPrivacySettings(currentPrivacySettings);
         });
       });
@@ -110,14 +111,17 @@ function handleOptInBtn() {
   handleOptIn();
 }
 export function handleOptIn() {
+  console.log('handleOptIn');
   stopTimeOut();
   if (isPoiActive()) {
+    console.log('isPoiActive');
     import('../poi-list/poi.group.list.js').then(poi_group_list => {
       poi_group_list.getGroupList().then(() => {
         (handlePoiOptIn()).then(onOptInComplete);
       });
     });
   } else {
+    console.log('NOT isPoiActive');
     (handleSoiOptIn()).then(onOptInComplete);
   }
   animateOptInButton();

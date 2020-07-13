@@ -74,6 +74,7 @@ function loadCustomVendorList() {
 }
 
 export function getPurposes() {
+  console.log({'cached':cachedCustomVendorList});
   return cachedVendorList ? cachedVendorList.purposes : expandIdsToObjects(DEFAULT_VENDOR_LIST.purposeIds);
 }
 

@@ -78,7 +78,8 @@ const ContentSnippet = () => {
 </div>`;
 };
 
-const PurposeContainerSnippet = ({id, header, text, value}) => {
+const PurposeContainerSnippet = ({id, header, text, value, mandatory}) => {
+  console.log({config: {id, header, text, value, mandatory}});
   return `
 <div class="as-oil-cpc__purpose">
     <div class="as-oil-cpc__purpose-container">
@@ -179,11 +180,13 @@ const ActivateButtonSnippet = () => {
 };
 
 const buildPurposeEntries = (list) => {
+  console.log({buildPurposeEntries: list});
   return list.map(purpose => PurposeContainerSnippet({
     id: purpose.id,
     header: getLabelWithDefault(`label_cpc_purpose_${formatPurposeId(purpose.id)}_text`, purpose.name || `Error: Missing text for purpose with id ${purpose.id}!`),
     text: getLabelWithDefault(`label_cpc_purpose_${formatPurposeId(purpose.id)}_desc`, purpose.description || ''),
-    value: false
+    value: (purpose.mandatory === true ? true : false),
+    mandatory: purpose.mandatory || false
   })).join('');
 };
 

@@ -142,7 +142,8 @@ export function getLocaleUrl() {
 }
 
 export function getIabVendorListUrl() {
-  return getConfigValue(OIL_CONFIG.ATTR_IAB_VENDOR_LIST_URL, 'https://vendorlist.consensu.org/vendorlist.json');
+  // @change: alexknapstein: we don't want to load the original vendorlist
+  return getConfigValue(OIL_CONFIG.ATTR_IAB_VENDOR_LIST_URL, '/oiljs/dist/assets/vendorlist.json');
 }
 
 export function getIabVendorBlacklist() {
